@@ -69,3 +69,20 @@ class TituloProduto extends StatelessWidget {
     );
   }
 }
+
+class FotoProduto extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.lightBlue),
+      ),
+      child: Image.asset(
+        "assets/img/airpods.jpg",
+        width: 360, 
+        height: 480,
+        fit: BoxFit.fitHeight,
+      ),
+    );
+  }
+}
