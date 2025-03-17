@@ -31,12 +31,7 @@ class DetalheProduto extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Image.asset(
-            "assets/img/airpods.jpg",
-            width: 360, 
-            height: 480,
-            fit: BoxFit.cover,
-          ),
+          FotoProduto(),
           TituloProduto(), 
         ],
       ),
