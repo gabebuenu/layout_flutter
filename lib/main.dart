@@ -31,8 +31,10 @@ class DetalheProduto extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          FotoProduto(),
-          TituloProduto(), 
+          FotoProduto(imagem: "assets/img/pendrive.png"),
+          TituloProduto(nome: "FONE DE OUVIDO BLUETOOTH", preco: 190.00),
+          TituloProduto(nome: "FONE DE OUVIDO BLUETOOTH", preco: 210.00),
+          AcoesProduto()  
         ],
       ),
     );
@@ -40,6 +42,12 @@ class DetalheProduto extends StatelessWidget {
 }
 
 class TituloProduto extends StatelessWidget {
+
+  TituloProduto({super.key, required this.nome, required this.preco});
+
+  final String nome;
+  final double preco;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -48,17 +56,23 @@ class TituloProduto extends StatelessWidget {
         children: [
           Expanded(
             child: Text(
-              "FONE DE OUVIDO BLUETOOTH",
+              nome,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
           Text(
-            "R\$ 200,00",
+            "R\$ ${preco.toStringAsFixed(2)}",
             style: TextStyle(fontSize: 16, color: Colors.black54),
           ),
-          Icon(Icons.shopping_cart, color: Colors.lightBlue),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.add_shopping_cart,
+              color: Colors.lightBlue
+            )
+          )
         ],
       ),
     );
@@ -66,6 +80,13 @@ class TituloProduto extends StatelessWidget {
 }
 
 class FotoProduto extends StatelessWidget {
+
+  // definição do construto do widget com o nome do arquivo de imagem como um parâmetro obrigatório 
+  const FotoProduto({super.key, required this.imagem});
+
+  // atributo para especificar a foto do produto
+  final String imagem;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -73,11 +94,44 @@ class FotoProduto extends StatelessWidget {
         border: Border.all(color: Colors.lightBlue),
       ),
       child: Image.asset(
-        "assets/img/airpods.jpg",
+        imagem,
         width: 360, 
         height: 480,
         fit: BoxFit.fitHeight,
       ),
+    );
+  }
+}
+
+class AcoesProduto extends StatelessWidget {
+
+  // const AcoesProduto({super.key, required this.onPressed, required this.icon});
+
+  // final VoidCallback onPressed;
+  // final Icon icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        IconButton(
+          onPressed: () { print("Comentário"); }, 
+          icon: Icon(Icons.message)
+          ),
+        IconButton(
+          onPressed: () { print("Compartilhar"); },  
+          icon: Icon(Icons.share)
+          ),
+        IconButton(
+          onPressed: () { print("Favoritar"); }, 
+          icon: Icon(Icons.favorite)
+          ),
+        IconButton(
+          onPressed: () { print("Download"); }, 
+          icon: Icon(Icons.download)
+          ) 
+      ],
     );
   }
 }

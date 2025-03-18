@@ -19,4 +19,5 @@ flutter:
   uses-material-design: true
   assets:
     - assets/img/airpods.jpg
+    - assets/img/pendrive.png
   
