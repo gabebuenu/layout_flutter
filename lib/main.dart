@@ -26,17 +26,22 @@ class LayoutProdutoApp extends StatelessWidget {
 }
 
 class DetalheProduto extends StatelessWidget {
+  const DetalheProduto({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          FotoProduto(imagem: "assets/img/pendrive.png"),
-          TituloProduto(nome: "FONE DE OUVIDO BLUETOOTH", preco: 190.00),
-          TituloProduto(nome: "FONE DE OUVIDO BLUETOOTH", preco: 210.00),
-          AcoesProduto(),
-          DescricaoProduto(),  
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            FotoProduto(imagem: "assets/img/pendrive.png"),
+            TituloProduto(nome: "FONE DE OUVIDO BLUETOOTH", preco: 190.00),
+            TituloProduto(nome: "FONE DE OUVIDO BLUETOOTH", preco: 210.00),
+            AcoesProduto(),
+            DescricaoProduto(descricao: "Fone de ouvido Bluetooth com microfone, bateria de longa duração e alta qualidade de som."),  
+          ],
+        ),
       ),
     );
   }
@@ -138,14 +143,10 @@ class AcoesProduto extends StatelessWidget {
 }
 
 class DescricaoProduto extends StatelessWidget {
-  /*
-  1. adicione um atributo para receber a descrição como um parâmetro do componente.
 
-  2. use este atributo para definir o texto que será exibido.
-  3. coloque o texto dentro de um container com uma borda e um padding de 12 pontos em todos os lados
-  4. faça o texto ficar com um fonte de 18 pontos e justificado
-  5. adicione este widget ao final do DetalheProduto passando sua descrição como parâmetro
-  */
+  const DescricaoProduto({super.key, required String this.descricao});
+
+  final String descricao;
 
   @override
   Widget build(BuildContext context) {
@@ -153,14 +154,13 @@ class DescricaoProduto extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(color: Colors.lightBlue),
       ),
-      padding: EdgeInsets.all(12.0),
-      child: Text(
-        "Fone de ouvido Bluetooth com microfone, bateria de longa duração e alta qualidade de som.",
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.normal,
+      child: Padding(
+        padding: EdgeInsets.all(12),
+        child: Text(
+          descricao,
+          style: TextStyle(fontSize: 18),
+          textAlign: TextAlign.justify,
         ),
-        textAlign: TextAlign.justify,
       ),
     );
   }
